@@ -1,0 +1,18 @@
+Tue Nov 19 11:18:50     2024
+
+
+#!/bin/bash
+
+# URL сайта, который нужно проверить
+URL="https://example.com"
+
+# Выполняем проверку доступности
+if curl -s --head "$URL" | grep "200 OK" > /dev/null
+then
+    echo "$(date): $URL доступен." >> website_status.log
+else
+    echo "$(date): $URL недоступен!" >> website_status.log
+    # Отправка уведомления, например, через e-mail
+    echo "$URL недоступен!" | mail -s "Сайт недоступен" your_email@example.com
+fi
+
